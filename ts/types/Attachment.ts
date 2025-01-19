@@ -1261,8 +1261,16 @@ export function isDownloadableFromBackupTier(
   return false;
 }
 
+export function isStickerOrLocalAttachment(attachment: AttachmentType): boolean {
+  return (
+    attachment.contentType === 'image/webp' || // Stickers are typically WebP
+    (attachment.path && !attachment.url) // Local attachments have a path but no URL
+  );
+}
+
 export function isDownloadable(attachment: AttachmentType): boolean {
   return (
+    isStickerOrLocalAttachment(attachment) ||
     isDownloadableFromTransitTier(attachment) ||
     isDownloadableFromBackupTier(attachment)
   );
