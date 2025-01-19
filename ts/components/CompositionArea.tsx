@@ -269,14 +269,20 @@ export const CompositionArea = memo(function CompositionArea({
 }) {
   const addAttachment = useCallback(
     async (conversationId: string, attachment: InMemoryAttachmentDraftType) => {
-      const isAvailable = await checkAttachmentAvailability(attachment);
-      const attachmentWithAvailability = {
-        ...attachment,
-        isUnavailable: !isAvailable,
-      };
-      return originalAddAttachment(conversationId, attachmentWithAvailability);
+      try {
+        const isAvailable = await checkAttachmentAvailability(attachment);
+        const attachmentWithAvailability = {
+          ...attachment,
+          isUnavailable: !isAvailable,
+        };
+        return originalAddAttachment(conversationId, attachmentWithAvailability);
+      } catch (error) {
+        console.error('Error adding attachment:', error);
+        showToast({ toastType: 'error', message: i18n('icu:CompositionArea--error-adding-attachment') });
+        return null;
+      }
     },
-    [originalAddAttachment]
+    [originalAddAttachment, checkAttachmentAvailability, showToast, i18n]
   );
 
   const checkAttachmentAvailability = useCallback(async (attachment: InMemoryAttachmentDraftType) => {
@@ -290,9 +296,19 @@ export const CompositionArea = memo(function CompositionArea({
 
     // Use canBeDownloaded function to check if the attachment can be downloaded
     if (canBeDownloaded(attachment)) {
-      // Here you might want to add additional checks, such as file existence
-      // For now, we'll assume it's available if it can be downloaded
-      return true;
+      if (attachment.path) {
+        // Check if the file exists on the file system
+        try {
+          await window.Signal.Data.getAttachmentDataFromFile(attachment.path);
+          return true;
+        } catch (error) {
+          console.error('Error checking file existence:', error);
+          return false;
+        }
+      } else if (attachment.data) {
+        // If we have data, assume it's available
+        return true;
+      }
     }
 
     return false;
