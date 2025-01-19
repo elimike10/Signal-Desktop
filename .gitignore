@@ -47,3 +47,4 @@ ts/protobuf/*.d.ts
 /.vscode
 *.sublime*
 *.map
+config.bat
