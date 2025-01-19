@@ -370,6 +370,34 @@ export function hasData(attachment: AttachmentType): boolean {
   return attachment.data instanceof Uint8Array;
 }
 
+export function isMediaAvailable(attachment: AttachmentType): boolean {
+  if (!attachment) {
+    return false;
+  }
+
+  if (attachment.isVoiceMessage) {
+    return true;
+  }
+
+  if (attachment.path && attachment.path.length > 0) {
+    return true;
+  }
+
+  if (attachment.data instanceof Uint8Array) {
+    return true;
+  }
+
+  if (attachment.url && attachment.url.startsWith('data:')) {
+    return true;
+  }
+
+  if (attachment.contentType === 'image/webp' && attachment.cdnId) {
+    return true;
+  }
+
+  return false;
+}
+
 export function loadData(
   readAttachmentV2Data: (
     attachment: Partial<AddressableAttachmentType>

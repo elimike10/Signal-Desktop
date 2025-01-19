@@ -17,6 +17,7 @@ import {
   isDownloadable,
   isIncremental,
   isReadyToView,
+  isMediaAvailable,
 } from '../../types/Attachment';
 import { ProgressCircle } from '../ProgressCircle';
 import { useUndownloadableMediaHandler } from '../../hooks/useUndownloadableMediaHandler';
@@ -97,6 +98,7 @@ export function Image({
   cropHeight = 0,
 }: Props): JSX.Element {
   const resolvedBlurHash = blurHash || defaultBlurHash(theme);
+  const mediaAvailable = isMediaAvailable(attachment);
 
   const curveStyles: CSSProperties = {
     borderStartStartRadius: curveTopLeft || CurveType.None,
@@ -104,6 +106,25 @@ export function Image({
     borderEndStartRadius: curveBottomLeft || CurveType.None,
     borderEndEndRadius: curveBottomRight || CurveType.None,
   };
+
+  if (!mediaAvailable) {
+    return (
+      <div
+        className={classNames(
+          'module-image__not-available',
+          className
+        )}
+        style={{
+          width: width || undefined,
+          height: height || undefined,
+          ...curveStyles,
+        }}
+        onClick={showMediaNoLongerAvailableToast}
+      >
+        <div className="module-image__not-available__icon" />
+      </div>
+    );
+  }
 
   const showVisualAttachmentClick = useCallback(
     (event: React.MouseEvent) => {
