@@ -39,7 +39,11 @@ import type {
   AttachmentDraftType,
   InMemoryAttachmentDraftType,
 } from '../types/Attachment';
-import { isImageAttachment, isVoiceMessage } from '../types/Attachment';
+import {
+  isImageAttachment,
+  isVoiceMessage,
+  canBeDownloaded,
+} from '../types/Attachment';
 import type { AciString } from '../types/ServiceId';
 import { AudioCapture } from './conversation/AudioCapture';
 import { CompositionUpload } from './CompositionUpload';
@@ -229,7 +233,7 @@ export type Props = Pick<
 
 export const CompositionArea = memo(function CompositionArea({
   // Base props
-  addAttachment,
+  addAttachment: originalAddAttachment,
   conversationId,
   convertDraftBodyRangesIntoHydrated,
   discardEditMessage,
@@ -260,6 +264,39 @@ export const CompositionArea = memo(function CompositionArea({
   onClearAttachments,
   // AudioCapture
   recordingState,
+
+  // Other props...
+}) {
+  const addAttachment = useCallback(
+    async (conversationId: string, attachment: InMemoryAttachmentDraftType) => {
+      const isAvailable = await checkAttachmentAvailability(attachment);
+      const attachmentWithAvailability = {
+        ...attachment,
+        isUnavailable: !isAvailable,
+      };
+      return originalAddAttachment(conversationId, attachmentWithAvailability);
+    },
+    [originalAddAttachment]
+  );
+
+  const checkAttachmentAvailability = useCallback(async (attachment: InMemoryAttachmentDraftType) => {
+    if (!attachment.data && !attachment.path) {
+      return false;
+    }
+
+    if (isImageAttachment(attachment) || isVoiceMessage(attachment)) {
+      return true;
+    }
+
+    // Use canBeDownloaded function to check if the attachment can be downloaded
+    if (canBeDownloaded(attachment)) {
+      // Here you might want to add additional checks, such as file existence
+      // For now, we'll assume it's available if it can be downloaded
+      return true;
+    }
+
+    return false;
+  }, []);
   startRecording,
   // StagedLinkPreview
   linkPreviewLoading,
