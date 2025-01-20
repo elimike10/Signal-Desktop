@@ -448,13 +448,22 @@ export const insertEmojiOps = (
         const [emoji] = match;
         const emojiData = emojiToData(emoji);
         if (emojiData) {
-          ops.push({ insert: text.slice(index, match.index), attributes });
+          const beforeEmoji = text.slice(index, match.index);
+          if (beforeEmoji.length > 0) {
+            ops.push({ insert: beforeEmoji, attributes });
+          }
           ops.push({
             insert: { emoji: { value: emoji } },
             attributes: { ...existingAttributes, ...attributes },
           });
           index = match.index + emoji.length;
         }
+      }
+
+      // Add any remaining text after the last emoji
+      const remainingText = text.slice(index);
+      if (remainingText.length > 0) {
+        ops.push({ insert: remainingText, attributes });
       }
 
       ops.push({ insert: text.slice(index, text.length), attributes });

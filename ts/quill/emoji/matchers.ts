@@ -3,8 +3,7 @@
 
 import Delta from 'quill-delta';
 import type { Matcher, AttributeMap } from 'quill';
-
-import { insertEmojiOps } from '../util';
+import emojiRegex from 'emoji-regex';
 
 export const matchEmojiImage: Matcher = (
   node: Element,
@@ -47,11 +46,23 @@ export const matchEmojiText: Matcher = (
     return new Delta();
   }
 
-  if (data.replace(/(\n|\r\n)/g, '') === '') {
+  if (data.replace(/(
+|
+)/g, '') === '') {
     return new Delta();
   }
 
-  const nodeAsInsert = { insert: data, attributes };
+  // Split the text into emoji and non-emoji parts
+  const parts = data.split(emojiRegex());
+  const ops = parts.flatMap((part, index) => {
+    if (index % 2 === 0) {
+      // Non-emoji part
+      return part ? [{ insert: part, attributes }] : [];
+    } else {
+      // Emoji part
+      return [{ insert: { emoji: { value: part } }, attributes }];
+    }
+  });
 
-  return new Delta(insertEmojiOps([nodeAsInsert], attributes));
+  return new Delta(ops);
 };
