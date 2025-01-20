@@ -465,12 +465,9 @@ export const insertEmojiOps = (
       if (remainingText.length > 0) {
         ops.push({ insert: remainingText, attributes });
       }
-
-      ops.push({ insert: text.slice(index, text.length), attributes });
     } else {
       ops.push(op);
     }
-
     return ops;
   }, [] as Array<Op>);
 };
