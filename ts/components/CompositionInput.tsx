@@ -189,7 +189,8 @@ export function CompositionInput(props: Props): React.ReactElement {
     return platform === 'linux' && process.env.XDG_SESSION_TYPE === 'wayland';
   }, [platform]);
 
-  // TODO: Test this functionality on a Linux Wayland system
+  const [lastInsertedChar, setLastInsertedChar] = React.useState<string | null>(null);
+
   const handleUnicodeInput = React.useCallback((range: RangeStatic, context: any) => {
     console.log('handleUnicodeInput called', { range, context, isLinuxWayland });
     if (isLinuxWayland && context.prefix === 'U+') {
@@ -205,6 +206,8 @@ export function CompositionInput(props: Props): React.ReactElement {
           quill.deleteText(range.index - 2, 2);
           quill.insertText(range.index - 2, unicodeChar);
           console.log('Unicode character inserted:', unicodeChar);
+          setLastInsertedChar(unicodeChar);
+          setTimeout(() => setLastInsertedChar(null), 2000); // Clear after 2 seconds
           return false;
         } catch (error) {
           console.error('Error inserting Unicode character:', error);
@@ -213,6 +216,39 @@ export function CompositionInput(props: Props): React.ReactElement {
     }
     return true;
   }, [isLinuxWayland]);
+
+  const renderFeedback = () => {
+    if (lastInsertedChar) {
+      return (
+        <div className="unicode-feedback">
+          Unicode character inserted: {lastInsertedChar}
+        </div>
+      );
+    }
+    return null;
+  };
+
+  // Add CSS for the feedback element
+  React.useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      .unicode-feedback {
+        position: absolute;
+        top: -30px;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        transition: opacity 0.3s ease-in-out;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
 
   // Regression test function
   const testUnicodeInput = React.useCallback(() => {
@@ -319,6 +355,32 @@ export function CompositionInput(props: Props): React.ReactElement {
       isLinuxWayland,
     ]
   );
+
+  const renderQuillWithFeedback = () => (
+    <div className={`${BASE_CLASS_NAME}__quill-container`}>
+      {renderFeedback()}
+      <ReactQuill
+        ref={refMerger<ReactQuill>(quillRef, inputApi)}
+        className={classNames(BASE_CLASS_NAME, moduleClassName, {
+          'module-composition-input--large': large,
+        })}
+        theme="signal"
+        placeholder={placeholder}
+        value={draftText || ''}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        formats={ALLOWED_FORMATS}
+        scrollingContainer={scrollerRefInner}
+        readOnly={disabled}
+        modules={quillModules}
+      />
+    </div>
+  );
+
+  // TODO: Replace the existing ReactQuill component in the render method with this call:
+  // {renderQuillWithFeedback()}
 
   const generateDelta = (
     text: string,
