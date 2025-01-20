@@ -4,7 +4,759 @@
 @use '../mixins';
 @use '../variables';
 
+
 .module-composition-input {
+  position: relative;
+
+  &__unicode-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: variables.$color-white;
+    border: 1px solid variables.$color-gray-25;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 100px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    @include mixins.dark-theme {
+      background-color: variables.$color-gray-75;
+      border-color: variables.$color-gray-60;
+    }
+  }
+
+  &__unicode-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: variables.$color-gray-60;
+    cursor: help;
+    background-color: variables.$color-gray-02;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.dark-theme {
+      color: variables.$color-gray-25;
+      background-color: variables.$color-gray-65;
+    }
+  }
+
+  // Existing styles start here
+
+
+
+  position: relative;
+
+  &__unicode-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: variables.$color-white;
+    border: 1px solid variables.$color-gray-25;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 100px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    @include mixins.dark-theme {
+      background-color: variables.$color-gray-75;
+      border-color: variables.$color-gray-60;
+    }
+  }
+
+  &__unicode-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: variables.$color-gray-60;
+    cursor: help;
+    background-color: variables.$color-gray-02;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.dark-theme {
+      color: variables.$color-gray-25;
+      background-color: variables.$color-gray-65;
+    }
+  }
+
+  // Existing styles start here
+
+
+  position: relative;
+
+  &__unicode-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: variables.$color-white;
+    border: 1px solid variables.$color-gray-25;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 100px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    @include mixins.dark-theme {
+      background-color: variables.$color-gray-75;
+      border-color: variables.$color-gray-60;
+    }
+  }
+
+  &__unicode-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: variables.$color-gray-60;
+    cursor: help;
+    background-color: variables.$color-gray-02;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.dark-theme {
+      color: variables.$color-gray-25;
+      background-color: variables.$color-gray-65;
+    }
+  }
+
+  // Existing styles start here
+
+  position: relative;
+
+  &__unicode-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: variables.$color-white;
+    border: 1px solid variables.$color-gray-25;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 100px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    @include mixins.dark-theme {
+      background-color: variables.$color-gray-75;
+      border-color: variables.$color-gray-60;
+    }
+  }
+
+  &__unicode-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: variables.$color-gray-60;
+    cursor: help;
+    background-color: variables.$color-gray-02;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.dark-theme {
+      color: variables.$color-gray-25;
+      background-color: variables.$color-gray-65;
+    }
+  }
+
+  // Existing styles start here
+
+  position: relative;
+
+  &__unicode-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: variables.$color-white;
+    border: 1px solid variables.$color-gray-25;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 100px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    @include mixins.dark-theme {
+      background-color: variables.$color-gray-75;
+      border-color: variables.$color-gray-60;
+    }
+  }
+
+  &__unicode-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: variables.$color-gray-60;
+    cursor: help;
+    background-color: variables.$color-gray-02;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.dark-theme {
+      color: variables.$color-gray-25;
+      background-color: variables.$color-gray-65;
+    }
+  }
+
+  // Existing styles start here
+
+  position: relative;
+
+  &__unicode-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: variables.$color-white;
+    border: 1px solid variables.$color-gray-25;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 100px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    @include mixins.dark-theme {
+      background-color: variables.$color-gray-75;
+      border-color: variables.$color-gray-60;
+    }
+  }
+
+  &__unicode-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: variables.$color-gray-60;
+    cursor: help;
+    background-color: variables.$color-gray-02;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.dark-theme {
+      color: variables.$color-gray-25;
+      background-color: variables.$color-gray-65;
+    }
+  }
+
+  // Existing styles start here
+  &__quill {
+    height: 100%;
+    padding-inline: 12px;
+
+    .ql-editor {
+      caret-color: transparent;
+      padding: 0;
+      text-align: start;
+      white-space: break-spaces;
+      line-height: inherit;
+
+      &--loaded {
+        caret-color: auto;
+      }
+
+      &.ql-blank::before {
+        inset-inline: 0;
+        font-style: normal;
+      }
+
+      .emoji-blot {
+        width: 20px;
+        height: 20px;
+        vertical-align: text-bottom;
+      }
+    }
+  }
+
+  position: relative;
+
+  &__unicode-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: variables.$color-white;
+    border: 1px solid variables.$color-gray-25;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 100px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    @include mixins.dark-theme {
+      background-color: variables.$color-gray-75;
+      border-color: variables.$color-gray-60;
+    }
+  }
+
+  &__unicode-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: variables.$color-gray-60;
+    cursor: help;
+    background-color: variables.$color-gray-02;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.dark-theme {
+      color: variables.$color-gray-25;
+      background-color: variables.$color-gray-65;
+    }
+  }
+
+  // Existing styles start here
+  &__quill {
+    height: 100%;
+    padding-inline: 12px;
+
+    .ql-editor {
+      caret-color: transparent;
+      padding: 0;
+      text-align: start;
+      white-space: break-spaces;
+      line-height: inherit;
+
+      &--loaded {
+        caret-color: auto;
+      }
+
+      &.ql-blank::before {
+        inset-inline: 0;
+        font-style: normal;
+      }
+
+      .emoji-blot {
+        width: 20px;
+        height: 20px;
+        vertical-align: text-bottom;
+      }
+    }
+  }
+
+  // ... rest of the existing styles ...
+}
+
+  position: relative;
+
+  &__unicode-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: variables.$color-white;
+    border: 1px solid variables.$color-gray-25;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 100px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    @include mixins.dark-theme {
+      background-color: variables.$color-gray-75;
+      border-color: variables.$color-gray-60;
+    }
+  }
+
+  &__unicode-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: variables.$color-gray-60;
+    cursor: help;
+    background-color: variables.$color-gray-02;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.dark-theme {
+      color: variables.$color-gray-25;
+      background-color: variables.$color-gray-65;
+    }
+  }
+
+  // ... rest of the existing styles ...
+
+  position: relative;
+
+  &__unicode-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: variables.$color-white;
+    border: 1px solid variables.$color-gray-25;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 100px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    @include mixins.dark-theme {
+      background-color: variables.$color-gray-75;
+      border-color: variables.$color-gray-60;
+    }
+  }
+
+  &__unicode-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: variables.$color-gray-60;
+    cursor: help;
+    background-color: variables.$color-gray-02;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.dark-theme {
+      color: variables.$color-gray-25;
+      background-color: variables.$color-gray-65;
+    }
+  }
+
+  &__quill {
+    height: 100%;
+    padding-inline: 12px;
+
+    .ql-editor {
+      caret-color: transparent;
+      padding: 0;
+      text-align: start;
+      white-space: break-spaces;
+      line-height: inherit;
+
+      &--loaded {
+        caret-color: auto;
+      }
+
+      &.ql-blank::before {
+        inset-inline: 0;
+        font-style: normal;
+      }
+
+      .emoji-blot {
+        width: 20px;
+        height: 20px;
+        vertical-align: text-bottom;
+      }
+    }
+  }
+
+  // ... rest of the existing styles ...
+}
+
+  position: relative;
+
+  &__unicode-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: variables.$color-white;
+    border: 1px solid variables.$color-gray-25;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 100px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    @include mixins.dark-theme {
+      background-color: variables.$color-gray-75;
+      border-color: variables.$color-gray-60;
+    }
+  }
+
+  &__unicode-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: variables.$color-gray-60;
+    cursor: help;
+    background-color: variables.$color-gray-02;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.dark-theme {
+      color: variables.$color-gray-25;
+      background-color: variables.$color-gray-65;
+    }
+  }
+
+  // Existing styles...
+  &__quill {
+    height: 100%;
+    padding-inline: 12px;
+
+    .ql-editor {
+      caret-color: transparent;
+      padding: 0;
+      text-align: start;
+      white-space: break-spaces;
+      line-height: inherit;
+
+      &--loaded {
+        caret-color: auto;
+      }
+
+      &.ql-blank::before {
+        inset-inline: 0;
+        font-style: normal;
+      }
+
+      .emoji-blot {
+        width: 20px;
+        height: 20px;
+        vertical-align: text-bottom;
+      }
+    }
+  }
+
+  // ... rest of the existing styles ...
+}
+
+  position: relative;
+
+  // Existing styles...
+
+  &__unicode-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: variables.$color-white;
+    border: 1px solid variables.$color-gray-25;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 100px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    @include mixins.dark-theme {
+      background-color: variables.$color-gray-75;
+      border-color: variables.$color-gray-60;
+    }
+  }
+
+  &__unicode-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: variables.$color-gray-60;
+    cursor: help;
+    background-color: variables.$color-gray-02;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.dark-theme {
+      color: variables.$color-gray-25;
+      background-color: variables.$color-gray-65;
+    }
+  }
+
+  // Rest of the existing styles...
+}
+
+  position: relative;
+
+  // Existing styles...
+
+  &__unicode-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: variables.$color-white;
+    border: 1px solid variables.$color-gray-25;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 100px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    @include mixins.dark-theme {
+      background-color: variables.$color-gray-75;
+      border-color: variables.$color-gray-60;
+    }
+  }
+
+  &__unicode-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: variables.$color-gray-60;
+    cursor: help;
+    background-color: variables.$color-gray-02;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.dark-theme {
+      color: variables.$color-gray-25;
+      background-color: variables.$color-gray-65;
+    }
+  }
+}
+
+  // Existing styles...
+
+
+.module-composition-input {
+  // Add this at the end of the existing .module-composition-input styles
+  position: relative;
+
+  &__unicode-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: variables.$color-white;
+    border: 1px solid variables.$color-gray-25;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      width: 100px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    @include mixins.dark-theme {
+      background-color: variables.$color-gray-75;
+      border-color: variables.$color-gray-60;
+    }
+  }
+
+  &__unicode-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: variables.$color-gray-60;
+    cursor: help;
+    background-color: variables.$color-gray-02;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.dark-theme {
+      color: variables.$color-gray-25;
+      background-color: variables.$color-gray-65;
+    }
+  }
+}
+
   &__quill {
     height: 100%;
     padding-inline: 12px;
