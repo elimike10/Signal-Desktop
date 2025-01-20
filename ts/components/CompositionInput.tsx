@@ -185,6 +185,26 @@ export function CompositionInput(props: Props): React.ReactElement {
     theme,
   } = props;
 
+  const isLinuxWayland = React.useMemo(() => {
+    return platform === 'linux' && process.env.XDG_SESSION_TYPE === 'wayland';
+  }, [platform]);
+
+  // TODO: Test this functionality on a Linux Wayland system
+  const handleUnicodeInput = React.useCallback((range: RangeStatic, context: any) => {
+    console.log('handleUnicodeInput called', { range, context, isLinuxWayland });
+    if (isLinuxWayland && context.prefix === 'U+') {
+      const quill = quillRef.current;
+      if (quill) {
+        const unicodeChar = String.fromCodePoint(parseInt(context.text, 16));
+        quill.deleteText(range.index - 2, 2);
+        quill.insertText(range.index - 2, unicodeChar);
+        console.log('Unicode character inserted:', unicodeChar);
+        return false;
+      }
+    }
+    return true;
+  }, [isLinuxWayland]);
+
   const refMerger = useRefMerger();
 
   const [emojiCompletionElement, setEmojiCompletionElement] =
@@ -209,6 +229,55 @@ export function CompositionInput(props: Props): React.ReactElement {
   );
 
   const [isMouseDown, setIsMouseDown] = React.useState<boolean>(false);
+
+  const quillModules = React.useMemo(
+    () => ({
+      toolbar: false,
+      signalClipboard: true,
+      autoSubstituteAsciiEmojis: true,
+      emojiCompletion: {
+        setEmojiPickerElement: setEmojiCompletionElement,
+        onPickEmoji: (emoji: EmojiPickDataType) => {
+          onPickEmoji(emoji);
+        },
+        skinTone,
+      },
+      mentionCompletion: {
+        getPreferredBadge,
+        me: ourConversationId,
+        memberRepositoryRef,
+        setMentionPickerElement: setMentionCompletionElement,
+        i18n,
+        theme,
+      },
+      formattingMenu: {
+        setFormattingChooserElement,
+      },
+      keyboard: {
+        bindings: {
+          unicodeInput: {
+            key: 'U',
+            shortKey: true,
+            shiftKey: true,
+            handler: handleUnicodeInput,
+          },
+        },
+      },
+    }),
+    [
+      getPreferredBadge,
+      i18n,
+      onPickEmoji,
+      ourConversationId,
+      setEmojiCompletionElement,
+      setFormattingChooserElement,
+      setMentionCompletionElement,
+      skinTone,
+      theme,
+      handleUnicodeInput,
+      isLinuxWayland,
+    ]
+  );
 
   const generateDelta = (
     text: string,
