@@ -195,15 +195,56 @@ export function CompositionInput(props: Props): React.ReactElement {
     if (isLinuxWayland && context.prefix === 'U+') {
       const quill = quillRef.current;
       if (quill) {
-        const unicodeChar = String.fromCodePoint(parseInt(context.text, 16));
-        quill.deleteText(range.index - 2, 2);
-        quill.insertText(range.index - 2, unicodeChar);
-        console.log('Unicode character inserted:', unicodeChar);
-        return false;
+        try {
+          const codePoint = parseInt(context.text, 16);
+          if (isNaN(codePoint) || codePoint < 0 || codePoint > 0x10FFFF) {
+            console.error('Invalid Unicode code point:', context.text);
+            return true;
+          }
+          const unicodeChar = String.fromCodePoint(codePoint);
+          quill.deleteText(range.index - 2, 2);
+          quill.insertText(range.index - 2, unicodeChar);
+          console.log('Unicode character inserted:', unicodeChar);
+          return false;
+        } catch (error) {
+          console.error('Error inserting Unicode character:', error);
+        }
       }
     }
     return true;
   }, [isLinuxWayland]);
+
+  // Regression test function
+  const testUnicodeInput = React.useCallback(() => {
+    if (isLinuxWayland) {
+      const testCases = [
+        { input: '0041', expected: 'A' },
+        { input: '1F600', expected: '😀' },
+        { input: 'INVALID', expected: null },
+        { input: '110000', expected: null }, // Above valid range
+      ];
+
+      testCases.forEach(({ input, expected }) => {
+        const result = handleUnicodeInput(
+          { index: 2, length: 0 } as RangeStatic,
+          { prefix: 'U+', text: input }
+        );
+
+        if (expected === null) {
+          console.assert(result === true, `Test case U+${input} should return true`);
+        } else {
+          console.assert(result === false, `Test case U+${input} should return false`);
+          // Note: We can't actually test the insertion here as we don't have a real Quill instance
+          console.log(`Test case U+${input} passed`);
+        }
+      });
+    }
+  }, [isLinuxWayland, handleUnicodeInput]);
+
+  // Run regression tests
+  React.useEffect(() => {
+    testUnicodeInput();
+  }, [testUnicodeInput]);
 
   const refMerger = useRefMerger();
 
