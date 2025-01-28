@@ -151,39 +151,155 @@ export type Props = Readonly<{
 const MAX_LENGTH = 64 * 1024;
 const BASE_CLASS_NAME = 'module-composition-input';
 
+const UnicodeIndicatorStyles = `
+  .${BASE_CLASS_NAME}__container {
+    position: relative;
+  }
+  .${BASE_CLASS_NAME}__unicode-active .${BASE_CLASS_NAME}__quill {
+    padding-top: 20px;
+  }
+  .${BASE_CLASS_NAME}__unicode-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 2px 5px;
+    font-size: 12px;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .${BASE_CLASS_NAME}__unicode-invalid {
+    background-color: #ffebee;
+  }
+  .${BASE_CLASS_NAME}__unicode-error {
+    color: #d32f2f;
+    font-weight: bold;
+  }
+`;
+
 export function CompositionInput(props: Props): React.ReactElement {
   const {
-    children,
-    conversationId,
-    disabled,
-    draftBodyRanges,
+    clearQuotedMessage,
     draftEditMessage,
-    draftText,
-    getPreferredBadge,
     i18n,
     inputApi,
     isFormattingEnabled,
-    isActive,
-    large,
-    linkPreviewLoading,
-    linkPreviewResult,
-    moduleClassName,
+    isFormattingFlagEnabled,
+    isFormattingSpoilersFlagEnabled,
     onCloseLinkPreview,
-    onBlur,
-    onFocus,
     onPickEmoji,
-    onScroll,
     onSubmit,
-    ourConversationId,
-    placeholder,
     platform,
-    quotedMessageId,
-    shouldHidePopovers,
-    skinTone,
     sendCounter,
-    sortedGroupMembers,
-    theme,
+    setQuotedMessage,
+    skinTone,
+    onKeyDown: propsOnKeyDown,
+    onChange: propsOnChange,
   } = props;
+
+  const [unicodeInputActive, setUnicodeInputActive] = React.useState(false);
+  const [unicodeBuffer, setUnicodeBuffer] = React.useState('');
+  const [invalidUnicode, setInvalidUnicode] = React.useState(false);
+  const quillRef = React.useRef<ReactQuill>(null);
+
+  React.useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = UnicodeIndicatorStyles;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (invalidUnicode) {
+      const timer = setTimeout(() => setInvalidUnicode(false), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [invalidUnicode]);
+
+  const handleUnicodeInput = React.useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
+    const { key, ctrlKey, shiftKey } = event;
+    if (ctrlKey && shiftKey && key.toLowerCase() === 'u') {
+      event.preventDefault();
+      setUnicodeInputActive(true);
+      setUnicodeBuffer('u');
+    }
+  }, []);
+
+  const onKeyDown = React.useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (unicodeInputActive) {
+      event.preventDefault();
+      if (event.key === 'Escape') {
+        setUnicodeInputActive(false);
+        setUnicodeBuffer('');
+      } else if (event.key === 'Backspace') {
+        setUnicodeBuffer(prev => prev.slice(0, -1));
+        if (unicodeBuffer.length <= 1) {
+          setUnicodeInputActive(false);
+        }
+      } else if (event.key === 'Enter' || event.key === ' ') {
+        const codePoint = parseInt(unicodeBuffer.slice(1), 16);
+        if (codePoint >= 0 && codePoint <= 0x10FFFF) {
+          const unicodeChar = String.fromCodePoint(codePoint);
+          const editor = quillRef.current?.getEditor();
+          if (editor) {
+            editor.insertText(editor.getLength(), unicodeChar);
+          }
+          setUnicodeInputActive(false);
+          setUnicodeBuffer('');
+        } else {
+          // Invalid Unicode codepoint
+          setInvalidUnicode(true);
+        }
+      } else if (/^[0-9A-Fa-f]$/.test(event.key)) {
+        setUnicodeBuffer(prev => {
+          if (prev.length < 7) { // 'u' + up to 6 hex digits
+            return prev + event.key;
+          }
+          return prev;
+        });
+      }
+    } else {
+      handleUnicodeInput(event);
+    }
+
+    if (propsOnKeyDown) {
+      propsOnKeyDown(event);
+    }
+  }, [unicodeInputActive, unicodeBuffer, handleUnicodeInput, propsOnKeyDown]);
+
+  const onChange = React.useCallback((
+    value: string,
+    delta: DeltaStatic,
+    source: Quill.Sources,
+    editor: ReactQuill.UnprivilegedEditor
+  ) => {
+    if (unicodeInputActive) {
+      // Prevent changes to the editor content during Unicode input
+      editor.setText(value.slice(0, -unicodeBuffer.length));
+    } else {
+      // Handle emoji and mention insertions
+      const ops = delta.ops;
+      if (ops && ops.length === 2 && ops[0].retain && ops[1].insert) {
+        const insert = ops[1].insert;
+        if (typeof insert === 'object' && (insert.emoji || insert.mention)) {
+          // This is an emoji or mention insertion, allow it
+          if (propsOnChange) {
+            propsOnChange(value);
+          }
+        } else if (propsOnChange) {
+          propsOnChange(value);
+        }
+      } else if (propsOnChange) {
+        propsOnChange(value);
+      }
+    }
+  }, [unicodeInputActive, unicodeBuffer, propsOnChange]);
 
   const refMerger = useRefMerger();
 
@@ -721,18 +837,30 @@ export function CompositionInput(props: Props): React.ReactElement {
     () => {
       const delta = generateDelta(draftText || '', draftBodyRanges || []);
 
-      return (
-        <ReactQuill
-          className={`${BASE_CLASS_NAME}__quill`}
-          onChange={() => callbacksRef.current.onChange()}
-          defaultValue={delta}
-          modules={{
-            toolbar: false,
-            signalClipboard: {
-              isDisabled: !isActive,
-            },
-            clipboard: {
-              matchers: [
+  return (
+    <div className={`${BASE_CLASS_NAME}__container ${unicodeInputActive ? `${BASE_CLASS_NAME}__unicode-active` : ''}`}>
+      {unicodeInputActive && (
+        <div className={`${BASE_CLASS_NAME}__unicode-indicator ${invalidUnicode ? `${BASE_CLASS_NAME}__unicode-invalid` : ''}`}>
+          Unicode: {unicodeBuffer}
+          {invalidUnicode && <span className={`${BASE_CLASS_NAME}__unicode-error`}>Invalid Unicode</span>}
+        </div>
+      )}
+      <ReactQuill
+        ref={quillRef}
+        className={`${BASE_CLASS_NAME}__quill`}
+        onChange={(value, delta, source, editor) => {
+          onChange(value, delta, source, editor);
+          callbacksRef.current.onChange();
+        }}
+        onKeyDown={onKeyDown}
+        defaultValue={delta}
+        modules={{
+          toolbar: false,
+          signalClipboard: {
+            isDisabled: !isActive,
+          },
+          clipboard: {
+            matchers: [
                 ['IMG', matchEmojiImage],
                 ['IMG', matchEmojiBlot],
                 ['STRONG', matchBold],
