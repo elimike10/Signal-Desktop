@@ -1262,6 +1262,11 @@ export function isDownloadableFromBackupTier(
 }
 
 export function isDownloadable(attachment: AttachmentType): boolean {
+  // Check if the attachment is a sticker
+  if (attachment.contentType === 'image/webp') {
+    return true;
+  }
+
   return (
     isDownloadableFromTransitTier(attachment) ||
     isDownloadableFromBackupTier(attachment)
