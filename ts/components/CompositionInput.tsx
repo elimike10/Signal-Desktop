@@ -153,7 +153,6 @@ const BASE_CLASS_NAME = 'module-composition-input';
 
 export function CompositionInput(props: Props): React.ReactElement {
   const {
-    children,
     conversationId,
     disabled,
     draftBodyRanges,
@@ -163,27 +162,25 @@ export function CompositionInput(props: Props): React.ReactElement {
     i18n,
     inputApi,
     isFormattingEnabled,
-    isActive,
+    isFormattingFlagEnabled,
+    isFormattingSpoilersFlagEnabled,
     large,
-    linkPreviewLoading,
-    linkPreviewResult,
-    moduleClassName,
-    onCloseLinkPreview,
+    maxLength,
+    moduleNames,
     onBlur,
+    onChange,
     onFocus,
     onPickEmoji,
     onScroll,
     onSubmit,
-    ourConversationId,
-    placeholder,
     platform,
-    quotedMessageId,
-    shouldHidePopovers,
-    skinTone,
     sendCounter,
+    skinTone,
     sortedGroupMembers,
     theme,
   } = props;
+
+  const [isUnicodeInputActive, setIsUnicodeInputActive] = React.useState(false);
 
   const refMerger = useRefMerger();
 
@@ -209,6 +206,22 @@ export function CompositionInput(props: Props): React.ReactElement {
   );
 
   const [isMouseDown, setIsMouseDown] = React.useState<boolean>(false);
+
+  const handleKeyDown = React.useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.ctrlKey && event.shiftKey && event.key === 'U') {
+      setIsUnicodeInputActive(true);
+      console.log('Unicode input mode activated');
+      event.preventDefault();
+    } else if (isUnicodeInputActive) {
+      if (event.key === ' ') {
+        setIsUnicodeInputActive(false);
+        console.log('Unicode input mode deactivated');
+      } else {
+        console.log('Unicode input:', event.key);
+      }
+      // Allow typing during Unicode input mode without preventing default
+    }
+  }, [isUnicodeInputActive]);
 
   const generateDelta = (
     text: string,
@@ -888,10 +901,11 @@ export function CompositionInput(props: Props): React.ReactElement {
           <div
             className={getClassName('__input')}
             data-supertab
-            ref={ref}
+            ref={refMerger(ref, scrollerRefInner)}
             data-testid="CompositionInput"
             data-enabled={disabled ? 'false' : 'true'}
             onMouseDown={onMouseDown}
+            onKeyDown={handleKeyDown}
           >
             {draftEditMessage && (
               <div className={getClassName('__editing-message')}>
@@ -908,34 +922,29 @@ export function CompositionInput(props: Props): React.ReactElement {
                 />
               </div>
             )}
-            {conversationId && linkPreviewLoading && linkPreviewResult && (
-              <StagedLinkPreview
-                {...linkPreviewResult}
-                moduleClassName="CompositionInput__link-preview"
-                i18n={i18n}
-                onClose={() => onCloseLinkPreview?.(conversationId)}
-              />
-            )}
-            {children}
             <div
-              ref={
-                props.scrollerRef
-                  ? refMerger(scrollerRefInner, props.scrollerRef)
-                  : scrollerRefInner
-              }
+              ref={props.scrollerRef ? refMerger(scrollerRefInner, props.scrollerRef) : scrollerRefInner}
               onClick={focus}
               onScroll={onScroll}
               className={classNames(
                 getClassName('__input__scroller'),
-                !large && linkPreviewResult
-                  ? getClassName('__input__scroller--link-preview')
-                  : null,
-                large ? getClassName('__input__scroller--large') : null,
-                children ? getClassName('__input--with-children') : null
+                large ? getClassName('__input__scroller--large') : null
               )}
             >
-              {reactQuill}
-              {shouldHidePopovers ? null : (
+              <ReactQuill
+                ref={quillRef}
+                modules={modules}
+                onBlur={onBlur}
+                onChange={onChange}
+                onFocus={onFocus}
+                onKeyDown={event => {
+                  handleKeyDown(event);
+                  onKeyDown(event);
+                }}
+                placeholder={i18n('icu:sendMessage')}
+                theme="snow"
+              />
+              {!shouldHidePopovers && (
                 <>
                   {emojiCompletionElement}
                   {mentionCompletionElement}
