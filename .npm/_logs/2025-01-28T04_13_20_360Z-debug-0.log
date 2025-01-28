@@ -14,3 +14,27 @@
 13 silly idealTree buildDeps
 14 silly fetch manifest robotjs@*
 15 silly packumentCache full:https://registry.npmjs.org/robotjs cache-miss
+16 http fetch GET 200 https://registry.npmjs.org/npm 2032ms
+17 http fetch GET 200 https://registry.npmjs.org/robotjs 583ms (cache miss)
+18 silly packumentCache full:https://registry.npmjs.org/robotjs set size:undefined disposed:false
+19 silly placeDep ROOT robotjs@0.6.0 OK for: signal-desktop@7.41.0-alpha.1 want: *
+20 silly fetch manifest nan@^2.14.0
+21 silly packumentCache full:https://registry.npmjs.org/nan cache-miss
+22 silly fetch manifest prebuild-install@^5.3.3
+23 silly packumentCache full:https://registry.npmjs.org/prebuild-install cache-miss
+24 http fetch GET 200 https://registry.npmjs.org/prebuild-install 51ms (cache miss)
+25 silly packumentCache full:https://registry.npmjs.org/prebuild-install set size:undefined disposed:false
+26 http fetch GET 200 https://registry.npmjs.org/nan 60ms (cache miss)
+27 silly packumentCache full:https://registry.npmjs.org/nan set size:undefined disposed:false
+28 silly placeDep ROOT nan@2.22.0 OK for: robotjs@0.6.0 want: ^2.14.0
+29 silly placeDep node_modules/robotjs prebuild-install@5.3.6 OK for: robotjs@0.6.0 want: ^5.3.3
+30 silly fetch manifest which-pm-runs@^1.0.0
+31 silly packumentCache full:https://registry.npmjs.org/which-pm-runs cache-miss
+32 http fetch GET 200 https://registry.npmjs.org/which-pm-runs 40ms (cache miss)
+33 silly packumentCache full:https://registry.npmjs.org/which-pm-runs set size:undefined disposed:false
+34 silly placeDep ROOT which-pm-runs@1.1.0 OK for: prebuild-install@5.3.6 want: ^1.0.0
+35 warn EBADENGINE Unsupported engine {
+35 warn EBADENGINE   package: 'signal-desktop@7.41.0-alpha.1',
+35 warn EBADENGINE   required: { node: '20.18.1' },
+35 warn EBADENGINE   current: { node: 'v20.18.0', npm: '10.8.2' }
+35 warn EBADENGINE }
