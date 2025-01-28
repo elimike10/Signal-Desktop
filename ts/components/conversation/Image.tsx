@@ -169,7 +169,9 @@ export function Image({
     [startDownload]
   );
   const undownloadableClick = useUndownloadableMediaHandler(
-    showMediaNoLongerAvailableToast
+    showMediaNoLongerAvailableToast,
+    attachment,
+    attachment.pending || false
   );
 
   const imageOrBlurHash = url ? (
