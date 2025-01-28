@@ -560,7 +560,7 @@ export function CompositionInput(props: Props): React.ReactElement {
     return true;
   };
 
-  const onChange = (): void => {
+  const handleChange = (): void => {
     const quill = quillRef.current;
 
     const { text, bodyRanges } = getTextAndRanges();
@@ -718,7 +718,7 @@ export function CompositionInput(props: Props): React.ReactElement {
   // stale state as the result of calling them.
   const unstaleCallbacks = {
     onBackspace,
-    onChange,
+    onChange: handleChange,
     onEnter,
     onEscape,
     onPickEmoji,
@@ -737,7 +737,7 @@ export function CompositionInput(props: Props): React.ReactElement {
       return (
         <ReactQuill
           className={`${BASE_CLASS_NAME}__quill`}
-          onChange={() => callbacksRef.current.onChange()}
+onChange={() => callbacksRef.current.handleChange()}
           defaultValue={delta}
           modules={{
             toolbar: false,
@@ -935,7 +935,7 @@ export function CompositionInput(props: Props): React.ReactElement {
                 ref={quillRef}
                 modules={modules}
                 onBlur={onBlur}
-                onChange={onChange}
+onChange={handleChange}
                 onFocus={onFocus}
                 onKeyDown={event => {
                   handleKeyDown(event);
