@@ -1267,6 +1267,11 @@ export function isDownloadable(attachment: AttachmentType): boolean {
     return true;
   }
 
+  // Check for error or pending state
+  if (attachment.error || attachment.pending) {
+    return false;
+  }
+
   return (
     isDownloadableFromTransitTier(attachment) ||
     isDownloadableFromBackupTier(attachment)
