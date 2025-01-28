@@ -2021,3 +2021,285 @@
 143 silly reify mark deleted [
 143 silly reify   '/home/user/Signal-Desktop/node_modules/@storybook/core-common/node_modules/@esbuild/darwin-arm64'
 143 silly reify ]
+144 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@parcel/watcher-win32-x64
+145 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@parcel/watcher-win32-x64' ]
+146 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@parcel/watcher-win32-ia32
+147 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@parcel/watcher-win32-ia32' ]
+148 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@parcel/watcher-win32-arm64
+149 silly reify mark deleted [
+149 silly reify   '/home/user/Signal-Desktop/node_modules/@parcel/watcher-win32-arm64'
+149 silly reify ]
+150 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@parcel/watcher-linux-arm64-musl
+151 silly reify mark deleted [
+151 silly reify   '/home/user/Signal-Desktop/node_modules/@parcel/watcher-linux-arm64-musl'
+151 silly reify ]
+152 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@parcel/watcher-linux-arm64-glibc
+153 silly reify mark deleted [
+153 silly reify   '/home/user/Signal-Desktop/node_modules/@parcel/watcher-linux-arm64-glibc'
+153 silly reify ]
+154 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@parcel/watcher-linux-arm-musl
+155 silly reify mark deleted [
+155 silly reify   '/home/user/Signal-Desktop/node_modules/@parcel/watcher-linux-arm-musl'
+155 silly reify ]
+156 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@parcel/watcher-linux-arm-glibc
+157 silly reify mark deleted [
+157 silly reify   '/home/user/Signal-Desktop/node_modules/@parcel/watcher-linux-arm-glibc'
+157 silly reify ]
+158 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@parcel/watcher-freebsd-x64
+159 silly reify mark deleted [
+159 silly reify   '/home/user/Signal-Desktop/node_modules/@parcel/watcher-freebsd-x64'
+159 silly reify ]
+160 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@parcel/watcher-darwin-x64
+161 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@parcel/watcher-darwin-x64' ]
+162 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@parcel/watcher-darwin-arm64
+163 silly reify mark deleted [
+163 silly reify   '/home/user/Signal-Desktop/node_modules/@parcel/watcher-darwin-arm64'
+163 silly reify ]
+164 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@parcel/watcher-android-arm64
+165 silly reify mark deleted [
+165 silly reify   '/home/user/Signal-Desktop/node_modules/@parcel/watcher-android-arm64'
+165 silly reify ]
+166 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@napi-rs/canvas-win32-x64-msvc
+167 silly reify mark deleted [
+167 silly reify   '/home/user/Signal-Desktop/node_modules/@napi-rs/canvas-win32-x64-msvc'
+167 silly reify ]
+168 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@napi-rs/canvas-linux-arm64-musl
+169 silly reify mark deleted [
+169 silly reify   '/home/user/Signal-Desktop/node_modules/@napi-rs/canvas-linux-arm64-musl'
+169 silly reify ]
+170 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@napi-rs/canvas-linux-arm64-gnu
+171 silly reify mark deleted [
+171 silly reify   '/home/user/Signal-Desktop/node_modules/@napi-rs/canvas-linux-arm64-gnu'
+171 silly reify ]
+172 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@napi-rs/canvas-linux-arm-gnueabihf
+173 silly reify mark deleted [
+173 silly reify   '/home/user/Signal-Desktop/node_modules/@napi-rs/canvas-linux-arm-gnueabihf'
+173 silly reify ]
+174 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@napi-rs/canvas-darwin-x64
+175 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@napi-rs/canvas-darwin-x64' ]
+176 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@napi-rs/canvas-darwin-arm64
+177 silly reify mark deleted [
+177 silly reify   '/home/user/Signal-Desktop/node_modules/@napi-rs/canvas-darwin-arm64'
+177 silly reify ]
+178 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@napi-rs/canvas-android-arm64
+179 silly reify mark deleted [
+179 silly reify   '/home/user/Signal-Desktop/node_modules/@napi-rs/canvas-android-arm64'
+179 silly reify ]
+180 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/win32-x64
+181 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/win32-x64' ]
+182 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/win32-ia32
+183 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/win32-ia32' ]
+184 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/win32-arm64
+185 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/win32-arm64' ]
+186 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/sunos-x64
+187 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/sunos-x64' ]
+188 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/openbsd-x64
+189 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/openbsd-x64' ]
+190 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/openbsd-arm64
+191 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/openbsd-arm64' ]
+192 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/netbsd-x64
+193 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/netbsd-x64' ]
+194 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/linux-s390x
+195 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/linux-s390x' ]
+196 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/linux-riscv64
+197 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/linux-riscv64' ]
+198 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/linux-ppc64
+199 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/linux-ppc64' ]
+200 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/linux-mips64el
+201 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/linux-mips64el' ]
+202 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/linux-loong64
+203 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/linux-loong64' ]
+204 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/linux-ia32
+205 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/linux-ia32' ]
+206 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/linux-arm64
+207 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/linux-arm64' ]
+208 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/linux-arm
+209 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/linux-arm' ]
+210 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/freebsd-x64
+211 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/freebsd-x64' ]
+212 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/freebsd-arm64
+213 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/freebsd-arm64' ]
+214 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/darwin-x64
+215 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/darwin-x64' ]
+216 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/darwin-arm64
+217 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/darwin-arm64' ]
+218 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/android-x64
+219 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/android-x64' ]
+220 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/android-arm64
+221 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/android-arm64' ]
+222 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/android-arm
+223 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/android-arm' ]
+224 verbose reify failed optional dependency /home/user/Signal-Desktop/node_modules/@esbuild/aix-ppc64
+225 silly reify mark deleted [ '/home/user/Signal-Desktop/node_modules/@esbuild/aix-ppc64' ]
+226 warn skipping integrity check for git dependency ssh://git@github.com/electron/node-gyp.git
+227 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 1163ms
+228 silly audit report {
+228 silly audit report   got: [
+228 silly audit report     {
+228 silly audit report       id: 1088948,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-pfrx-2q88-qq97',
+228 silly audit report       title: 'Got allows a redirect to a UNIX socket',
+228 silly audit report       severity: 'moderate',
+228 silly audit report       vulnerable_versions: '<11.8.5',
+228 silly audit report       cwe: [],
+228 silly audit report       cvss: [Object]
+228 silly audit report     }
+228 silly audit report   ],
+228 silly audit report   'body-parser': [
+228 silly audit report     {
+228 silly audit report       id: 1099520,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-qwcr-r2fm-qrc7',
+228 silly audit report       title: 'body-parser vulnerable to denial of service when url encoding is enabled',
+228 silly audit report       severity: 'high',
+228 silly audit report       vulnerable_versions: '<1.20.3',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     }
+228 silly audit report   ],
+228 silly audit report   cookie: [
+228 silly audit report     {
+228 silly audit report       id: 1099846,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-pxg6-pf52-xh8x',
+228 silly audit report       title: 'cookie accepts cookie name, path, and domain with out of bounds characters',
+228 silly audit report       severity: 'low',
+228 silly audit report       vulnerable_versions: '<0.7.0',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     }
+228 silly audit report   ],
+228 silly audit report   'cross-spawn': [
+228 silly audit report     {
+228 silly audit report       id: 1100562,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-3xgq-45jj-v275',
+228 silly audit report       title: 'Regular Expression Denial of Service (ReDoS) in cross-spawn',
+228 silly audit report       severity: 'high',
+228 silly audit report       vulnerable_versions: '<6.0.6',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     },
+228 silly audit report     {
+228 silly audit report       id: 1100563,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-3xgq-45jj-v275',
+228 silly audit report       title: 'Regular Expression Denial of Service (ReDoS) in cross-spawn',
+228 silly audit report       severity: 'high',
+228 silly audit report       vulnerable_versions: '>=7.0.0 <7.0.5',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     }
+228 silly audit report   ],
+228 silly audit report   electron: [
+228 silly audit report     {
+228 silly audit report       id: 1099652,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-7m48-wc93-9g85',
+228 silly audit report       title: 'ASAR Integrity bypass via filetype confusion in electron',
+228 silly audit report       severity: 'moderate',
+228 silly audit report       vulnerable_versions: '>=23.0.0-alpha.1 <=23.3.13',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     }
+228 silly audit report   ],
+228 silly audit report   express: [
+228 silly audit report     {
+228 silly audit report       id: 1100530,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-qw6h-vgh9-j6wx',
+228 silly audit report       title: 'express vulnerable to XSS via response.redirect()',
+228 silly audit report       severity: 'low',
+228 silly audit report       vulnerable_versions: '<4.20.0',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     }
+228 silly audit report   ],
+228 silly audit report   'path-to-regexp': [
+228 silly audit report     {
+228 silly audit report       id: 1101844,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-rhx6-c78j-4q9w',
+228 silly audit report       title: 'Unpatched `path-to-regexp` ReDoS in 0.1.x',
+228 silly audit report       severity: 'high',
+228 silly audit report       vulnerable_versions: '<0.1.12',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     },
+228 silly audit report     {
+228 silly audit report       id: 1101849,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-9wv6-86v2-598j',
+228 silly audit report       title: 'path-to-regexp outputs backtracking regular expressions',
+228 silly audit report       severity: 'high',
+228 silly audit report       vulnerable_versions: '>=0.2.0 <1.9.0',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     },
+228 silly audit report     {
+228 silly audit report       id: 1101850,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-9wv6-86v2-598j',
+228 silly audit report       title: 'path-to-regexp outputs backtracking regular expressions',
+228 silly audit report       severity: 'high',
+228 silly audit report       vulnerable_versions: '<0.1.10',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     }
+228 silly audit report   ],
+228 silly audit report   'http-proxy-middleware': [
+228 silly audit report     {
+228 silly audit report       id: 1100223,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-c7qv-q95q-8v27',
+228 silly audit report       title: 'Denial of service in http-proxy-middleware',
+228 silly audit report       severity: 'high',
+228 silly audit report       vulnerable_versions: '<2.0.7',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     }
+228 silly audit report   ],
+228 silly audit report   nanoid: [
+228 silly audit report     {
+228 silly audit report       id: 1101163,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-mwcw-c2x4-8c55',
+228 silly audit report       title: 'Predictable results in nanoid generation when given non-integer values',
+228 silly audit report       severity: 'moderate',
+228 silly audit report       vulnerable_versions: '<3.3.8',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     }
+228 silly audit report   ],
+228 silly audit report   quill: [
+228 silly audit report     {
+228 silly audit report       id: 1098574,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-4943-9vgg-gr5r',
+228 silly audit report       title: 'Cross-site Scripting in quill',
+228 silly audit report       severity: 'moderate',
+228 silly audit report       vulnerable_versions: '<=1.3.7',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     }
+228 silly audit report   ],
+228 silly audit report   send: [
+228 silly audit report     {
+228 silly audit report       id: 1100526,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-m6fv-jmcg-4jfg',
+228 silly audit report       title: 'send vulnerable to template injection that can lead to XSS',
+228 silly audit report       severity: 'low',
+228 silly audit report       vulnerable_versions: '<0.19.0',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     }
+228 silly audit report   ],
+228 silly audit report   'serve-static': [
+228 silly audit report     {
+228 silly audit report       id: 1100528,
+228 silly audit report       url: 'https://github.com/advisories/GHSA-cm22-4g7w-348p',
+228 silly audit report       title: 'serve-static vulnerable to template injection that can lead to XSS',
+228 silly audit report       severity: 'low',
+228 silly audit report       vulnerable_versions: '<1.16.0',
+228 silly audit report       cwe: [Array],
+228 silly audit report       cvss: [Object]
+228 silly audit report     }
+228 silly audit report   ]
+228 silly audit report }
+229 silly packumentCache corgi:https://registry.npmjs.org/got cache-miss
+230 silly packumentCache corgi:https://registry.npmjs.org/body-parser cache-miss
+231 silly packumentCache corgi:https://registry.npmjs.org/cookie cache-miss
+232 silly packumentCache corgi:https://registry.npmjs.org/cross-spawn cache-miss
+233 silly packumentCache corgi:https://registry.npmjs.org/electron cache-miss
+234 silly packumentCache corgi:https://registry.npmjs.org/express cache-miss
+235 silly packumentCache corgi:https://registry.npmjs.org/path-to-regexp cache-miss
+236 silly packumentCache corgi:https://registry.npmjs.org/http-proxy-middleware cache-miss
+237 silly packumentCache corgi:https://registry.npmjs.org/nanoid cache-miss
