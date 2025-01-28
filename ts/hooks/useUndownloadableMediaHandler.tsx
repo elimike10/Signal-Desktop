@@ -4,16 +4,18 @@
 import { useCallback } from 'react';
 
 export function useUndownloadableMediaHandler(
-  showMediaNoLongerAvailableToast: (() => void) | undefined
+  showMediaNoLongerAvailableToast: (() => void) | undefined,
+  isSticker: boolean,
+  isInComposer: boolean
 ): (event: React.MouseEvent) => void {
   return useCallback(
     (event: React.MouseEvent) => {
-      if (showMediaNoLongerAvailableToast) {
+      if (showMediaNoLongerAvailableToast && !isSticker && !isInComposer) {
         event.preventDefault();
         event.stopPropagation();
         showMediaNoLongerAvailableToast();
       }
     },
-    [showMediaNoLongerAvailableToast]
+    [showMediaNoLongerAvailableToast, isSticker, isInComposer]
   );
 }

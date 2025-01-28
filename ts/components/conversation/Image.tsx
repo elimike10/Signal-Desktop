@@ -63,6 +63,8 @@ export type Props = {
   startDownload?: () => void;
   onClickClose?: (attachment: AttachmentType) => void;
   onError?: () => void;
+  isSticker?: boolean;
+  isInComposer?: boolean;
 };
 
 export function Image({
@@ -95,8 +97,12 @@ export function Image({
   width = 0,
   cropWidth = 0,
   cropHeight = 0,
+  isSticker = false,
+  isInComposer = false,
 }: Props): JSX.Element {
   const resolvedBlurHash = blurHash || defaultBlurHash(theme);
+  
+  const shouldShowMediaNoLongerAvailableIcon = !isSticker && !isInComposer && !isDownloadable(attachment);
 
   const curveStyles: CSSProperties = {
     borderStartStartRadius: curveTopLeft || CurveType.None,
@@ -168,86 +174,53 @@ export function Image({
     },
     [startDownload]
   );
-  const undownloadableClick = useUndownloadableMediaHandler(
-    showMediaNoLongerAvailableToast
-  );
+const undownloadableClick = useUndownloadableMediaHandler(
+  showMediaNoLongerAvailableToast,
+  isSticker,
+  isInComposer
+);
 
-  const imageOrBlurHash = url ? (
-    <img
-      onError={onError}
-      className="module-image__image"
-      alt={alt}
-      height={height}
-      width={width}
-      src={url}
-    />
-  ) : (
-    <Blurhash
-      hash={resolvedBlurHash}
-      width={width}
-      height={height}
-      style={{ display: 'block' }}
-    />
-  );
+const imgElement = (
+  <img
+    alt={alt}
+    className={classNames('module-image__image', {
+      'module-image__image--not-ready': !isReadyToView(attachment),
+    })}
+    onError={onError}
+    src={url}
+  />
+);
 
-  const startDownloadButton =
-    startDownload &&
-    !attachment.path &&
-    !attachment.pending &&
-    !isIncremental(attachment) ? (
+return (
+  <div
+    className={classNames(
+      'module-image',
+      {
+        'module-image--no-border': noBorder,
+        'module-image--no-background': noBackground,
+        'module-image--with-bottom-overlay': bottomOverlay,
+        'module-image--with-dark-overlay': darkOverlay,
+        'module-image--with-play-icon': playIconOverlay,
+        'module-image--with-close-button': closeButton,
+      },
+      className
+    )}
+    style={{
+      width: width || (cropWidth ? `${cropWidth}px` : undefined),
+      height: height || (cropHeight ? `${cropHeight}px` : undefined),
+      ...curveStyles,
+    }}
+  >
+    {shouldShowMediaNoLongerAvailableIcon && (
       <button
         type="button"
-        className="module-image__overlay-circle"
-        aria-label={i18n('icu:startDownload')}
-        onClick={startDownloadClick}
-        onKeyDown={startDownloadKeyDown}
-        tabIndex={tabIndex}
+        className="module-image__overlay-circle module-image__overlay-circle--undownloadable"
+        aria-label={i18n('undownloadableMedia')}
+        onClick={undownloadableClick}
       >
-        <div className="module-image__download-icon" />
+        <div className="module-image__undownloadable-icon" />
       </button>
-    ) : undefined;
-
-  const spinner =
-    isIncremental(attachment) || !cancelDownload
-      ? undefined
-      : getSpinner({
-          attachment,
-          i18n,
-          cancelDownloadClick,
-          cancelDownloadKeyDown,
-          tabIndex,
-        });
-
-  const isMediaDownloadable = isDownloadable(attachment);
-
-  return (
-    <div
-      className={classNames(
-        'module-image',
-        className,
-        !noBackground ? 'module-image--with-background' : null,
-        cropWidth || cropHeight ? 'module-image--cropped' : null
-      )}
-      style={{
-        width: width - cropWidth,
-        height: height - cropHeight,
-        ...curveStyles,
-      }}
-    >
-      {imageOrBlurHash}
-      {isMediaDownloadable ? (
-        startDownloadButton
-      ) : (
-        <button
-          type="button"
-          className="module-image__overlay-circle module-image__overlay-circle--undownloadable"
-          aria-label={i18n('icu:mediaNoLongerAvailable')}
-          onClick={undownloadableClick}
-          tabIndex={tabIndex}
-        >
-          <div className="module-image__undownloadable-icon" />
-        </button>
-      )}
+    )}
       {spinner}
 
       {attachment.caption ? (
