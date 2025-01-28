@@ -11,3 +11,6 @@
 10 verbose logfile /home/user/.npm/_logs/2025-01-28T04_13_20_360Z-debug-0.log
 11 silly packumentCache heap:2116812800 maxSize:529203200 maxEntrySize:264601600
 12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 silly fetch manifest robotjs@*
+15 silly packumentCache full:https://registry.npmjs.org/robotjs cache-miss
