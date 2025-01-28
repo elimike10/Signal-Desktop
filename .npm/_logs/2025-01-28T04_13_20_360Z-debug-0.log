@@ -9,3 +9,5 @@
 8 verbose argv "install" "robotjs"
 9 verbose logfile logs-max:10 dir:/home/user/.npm/_logs/2025-01-28T04_13_20_360Z-
 10 verbose logfile /home/user/.npm/_logs/2025-01-28T04_13_20_360Z-debug-0.log
+11 silly packumentCache heap:2116812800 maxSize:529203200 maxEntrySize:264601600
+12 silly logfile done cleaning log files
