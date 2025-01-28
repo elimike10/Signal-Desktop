@@ -171,7 +171,8 @@ export function Image({
   const undownloadableClick = useUndownloadableMediaHandler(
     showMediaNoLongerAvailableToast,
     attachment,
-    attachment.pending || false
+    attachment.pending || false,
+    attachment.uploadState === 'uploading'
   );
 
   const imageOrBlurHash = url ? (
